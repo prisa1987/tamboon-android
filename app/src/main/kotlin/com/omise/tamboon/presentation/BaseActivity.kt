@@ -1,17 +1,24 @@
 package com.omise.tamboon.presentation
 
-import android.arch.lifecycle.LifecycleActivity
+import android.arch.lifecycle.LifecycleRegistry
+import android.arch.lifecycle.LifecycleRegistryOwner
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_charities.*
 
-abstract class BaseActivity : LifecycleActivity() {
+abstract class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner {
 
-    abstract val contentLayoutResourceId: Int
+    protected abstract val contentLayoutResourceId: Int
+    protected abstract val toolbarTitle: String
+
+    lateinit var registry: LifecycleRegistry
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(contentLayoutResourceId)
+        registry = LifecycleRegistry(this)
 
         //handle savedInstanceState
         savedInstanceState?.let {
@@ -27,9 +34,14 @@ abstract class BaseActivity : LifecycleActivity() {
         setUp()
     }
 
+    override fun getLifecycle() = registry
     open fun handleSavedInstanceState(savedInstanceState: Bundle) {}
     open fun handleIntent(intent: Intent) {}
-    open fun setUpToolbar() {}
     open fun setUp() {}
+
+    fun setUpToolbar() {
+        tb.title = toolbarTitle
+        setSupportActionBar(tb)
+    }
 
 }
