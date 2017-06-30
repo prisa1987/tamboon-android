@@ -2,10 +2,12 @@ package com.omise.tamboon.presentation.charities
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import com.omise.android.tamboon.R
 import com.omise.tamboon.presentation.BaseActivity
+import com.omise.tamboon.presentation.donation.CreateDonationAcitivity
 import kotlinx.android.synthetic.main.activity_charities.*
 
 class CharitiesActivity : BaseActivity() {
@@ -34,7 +36,10 @@ class CharitiesActivity : BaseActivity() {
     }
 
     private fun navigateToCharityDonate(id: String) {
-
+        val intent = Intent(this, CreateDonationAcitivity::class.java).apply {
+            putExtra(CreateDonationAcitivity.ARG_CHARITY_ID, id)
+        }
+        startActivity(intent)
     }
 
 }

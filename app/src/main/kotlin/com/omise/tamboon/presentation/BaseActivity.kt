@@ -5,7 +5,7 @@ import android.arch.lifecycle.LifecycleRegistryOwner
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_charities.*
+import kotlinx.android.synthetic.main.view_toolbar.*
 
 abstract class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner {
 
@@ -41,8 +41,10 @@ abstract class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner {
     open fun setUp() {}
 
     fun setUpToolbar() {
-        tb.title = toolbarTitle
-        setSupportActionBar(tb)
+        tb?.let {
+            it.title = toolbarTitle
+            setSupportActionBar(it)
+        }
     }
 
 }
