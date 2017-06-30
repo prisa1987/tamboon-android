@@ -35,6 +35,7 @@ abstract class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner {
     }
 
     override fun getLifecycle() = registry
+
     open fun handleSavedInstanceState(savedInstanceState: Bundle) {}
     open fun handleIntent(intent: Intent) {}
     open fun setUp() {}
