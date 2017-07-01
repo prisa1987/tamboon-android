@@ -4,11 +4,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/tb"
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="?attr/colorPrimary"/>
+    <include layout="@layout/view_toolbar" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvCharities"

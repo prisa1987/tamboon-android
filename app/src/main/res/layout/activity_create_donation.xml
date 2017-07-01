@@ -7,12 +7,26 @@
     <include layout="@layout/view_toolbar" />
 
     <EditText
+        android:id="@+id/etNumber"
         android:textSize="50dp"
         android:singleLine="true"
         android:hint="0.00"
         android:drawableLeft="@drawable/ic_thailand_baht"
         android:drawablePadding="4dp"
         android:layout_margin="12dp"
+        android:textAlignment="textEnd"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/etCreditCard"
+        android:textSize="20dp"
+        android:singleLine="true"
+        android:textAlignment="textEnd"
+        android:hint="XXXX - XXXX - XXXX - XXXX"
+        android:layout_margin="12dp"
+        android:inputType="phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
