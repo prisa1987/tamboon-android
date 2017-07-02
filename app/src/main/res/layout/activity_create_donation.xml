@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorLight"
+              android:orientation="vertical">
+
+    <include layout="@layout/view_toolbar"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <EditText
+            android:id="@+id/etNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="128dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_thailand_baht"
+            android:hint="0.00"
+            android:inputType="numberDecimal"
+            android:singleLine="true"
+            android:textAlignment="textEnd"
+            android:textSize="50dp"/>
+    </FrameLayout>
+
+    <TextView
+        android:layout_marginTop="4dp"
+        android:textAlignment="textEnd"
+        android:layout_marginBottom="4dp"
+        android:text="min:20 THB , max: 1,000,000 THB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textSize="12dp"/>
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:textAllCaps="true"
+            android:padding="12dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Card number"/>
+
+        <TextView
+            android:id="@+id/tvCardNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:padding="12dp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvExpireLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Expires"/>
+
+            <TextView
+                android:id="@+id/tvExpire"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@id/tvExpireLabel"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/white"
+                android:inputType="none"
+                android:minWidth="68dp"
+                android:padding="8dp"/>
+
+            <TextView
+                android:id="@+id/tvCvcLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@id/tvExpire"
+                android:text="CVC"/>
+
+            <EditText
+                android:id="@+id/etCVC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvCvcLabel"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@id/tvExpire"
+                android:background="@color/white"
+                android:inputType="numberPassword"
+                android:maxLength="3"
+                android:minWidth="76dp"
+                android:padding="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvCvcLabel"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@id/etCVC"
+                android:maxWidth="90dp"
+                android:text="3 digits on the back of your card"
+                android:textSize="12dp"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btPay"
+            android:enabled="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="Pay"
+            style="@style/ActionButton"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="24dp"/>
+    </FrameLayout>
+</LinearLayout>

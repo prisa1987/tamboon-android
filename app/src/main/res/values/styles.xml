@@ -8,4 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ActionButton" parent="ActionButton">
+        <item name="android:disabledAlpha">0.5</item>
+    </style>
+
+
+
+
 </resources>

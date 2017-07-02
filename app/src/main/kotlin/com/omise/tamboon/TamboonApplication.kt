@@ -11,8 +11,6 @@ class TamboonApplication : Application() {
         lateinit var component: AppComponent
     }
 
-    private val BASE_URL = "http://jsonplaceholder.typicode.com"
-
     override fun onCreate() {
         super.onCreate()
         buildDependencyGraph()

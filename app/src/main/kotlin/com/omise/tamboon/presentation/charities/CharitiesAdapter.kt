@@ -12,7 +12,7 @@ import kotlin.properties.Delegates
 class CharitiesAdapter : RecyclerView.Adapter<CharitiesViewHolder>() {
 
     var charities by Delegates.observable(listOf<Charity>()) { _, _, _ -> notifyDataSetChanged() }
-    var itemOnClickListener: ((id: String) -> Unit)? = null
+    var itemOnClickListener: ((Pair<String, String>) -> Unit)? = null
 
     override fun getItemCount() = charities.size
 
@@ -27,11 +27,10 @@ class CharitiesAdapter : RecyclerView.Adapter<CharitiesViewHolder>() {
 
 }
 
-class CharitiesViewHolder(val view: View, onClickListener: ((id: String) -> Unit)?) : RecyclerView.ViewHolder(view) {
+class CharitiesViewHolder(val view: View, onClickListener: ((Pair<String, String>) -> Unit)?) : RecyclerView.ViewHolder(view) {
 
     var charity by Delegates.observable(Charity()) { _, _, value ->
         view.tvCharity.text = value.name
-        view.setOnClickListener { value.id?.let { onClickListener?.invoke(it) } }
-    }
+        view.setOnClickListener { onClickListener?.invoke(value.id to  value.name) } }
 
 }
