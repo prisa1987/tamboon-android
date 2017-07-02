@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class Charity (
 
-    var id: String? = null,
+    var id: String = "",
 
-    var name: String? = null,
+    var name: String = "",
 
     @SerializedName("logo_url")
     var logoURL: String? = null
