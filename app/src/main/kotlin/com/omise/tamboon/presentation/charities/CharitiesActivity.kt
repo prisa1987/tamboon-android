@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import com.omise.android.tamboon.R
 import com.omise.tamboon.presentation.BaseActivity
@@ -29,8 +30,8 @@ class CharitiesActivity : BaseActivity() {
     private fun setupRecyclerView() {
         rvCharities.apply {
             val linearLayoutManager = LinearLayoutManager(this@CharitiesActivity)
-            layoutManager = linearLayoutManager
-            addItemDecoration(DividerItemDecoration(context, linearLayoutManager.orientation))
+            val gridLayoutManager = GridLayoutManager(this@CharitiesActivity, 2)
+            layoutManager = gridLayoutManager
             adapter = this@CharitiesActivity.adapter
         }
         adapter.itemOnClickListener = { navigateToCharityDonate(it.first, it.second) }

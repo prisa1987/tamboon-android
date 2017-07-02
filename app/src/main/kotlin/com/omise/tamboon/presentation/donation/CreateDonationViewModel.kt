@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModel
 import com.google.gson.Gson
 import com.omise.tamboon.data.entity.ResponseError
 import com.omise.tamboon.data.entity.User
-import com.omise.tamboon.data.extension.untilDestory
+import com.omise.tamboon.extension.untilDestory
 import com.omise.tamboon.data.repository.CharityRepositoryImpl
 import com.omise.tamboon.data.repository.UserRepositoryImpl
 import io.reactivex.android.schedulers.AndroidSchedulers

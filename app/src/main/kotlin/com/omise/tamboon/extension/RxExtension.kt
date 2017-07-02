@@ -1,4 +1,4 @@
-package com.omise.tamboon.data.extension
+package com.omise.tamboon.extension
 
 import io.reactivex.disposables.Disposable
 import io.reactivex.disposables.CompositeDisposable
