@@ -6,7 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.omise.android.tamboon.R
 import com.omise.tamboon.data.entity.Charity
-import kotlinx.android.synthetic.main.item_charity.view.*
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.item_grid_charity.view.*
 import kotlin.properties.Delegates
 
 class CharitiesAdapter : RecyclerView.Adapter<CharitiesViewHolder>() {
@@ -17,7 +18,7 @@ class CharitiesAdapter : RecyclerView.Adapter<CharitiesViewHolder>() {
     override fun getItemCount() = charities.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharitiesViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_charity, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_grid_charity, parent, false)
         return CharitiesViewHolder(view, itemOnClickListener)
     }
 
@@ -27,10 +28,20 @@ class CharitiesAdapter : RecyclerView.Adapter<CharitiesViewHolder>() {
 
 }
 
-class CharitiesViewHolder(val view: View, onClickListener: ((Pair<String, String>) -> Unit)?) : RecyclerView.ViewHolder(view) {
+class CharitiesViewHolder(val view: View, val onClickListener: ((Pair<String, String>) -> Unit)?) : RecyclerView.ViewHolder(view) {
 
-    var charity by Delegates.observable(Charity()) { _, _, value ->
+    var charity by Delegates.observable(Charity()) { _, _, value -> setUpView(value) }
+
+    fun setUpView(value: Charity) {
         view.tvCharity.text = value.name
-        view.setOnClickListener { onClickListener?.invoke(value.id to  value.name) } }
+        loadImage(value.logoURL)
+        view.setOnClickListener { onClickListener?.invoke(value.id to value.name) }
+    }
+
+    fun loadImage(logoURL: String?) {
+        Picasso.with(view.context)
+                .load(logoURL)
+                .into(view.ivCharity)
+    }
 
 }
