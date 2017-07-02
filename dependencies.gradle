@@ -4,4 +4,11 @@ ext {
     architectureComponentsVersion = '1.0.0-alpha2'
 
     retrofitVersion = '2.3.0'
+    rxandroidVersion = '2.0.1'
+    rxJavaVersion = '2.0.3'
+
+    designSupportVersion = '25.4.0'
+
+    picassoVersion = '2.5.2'
+
 }

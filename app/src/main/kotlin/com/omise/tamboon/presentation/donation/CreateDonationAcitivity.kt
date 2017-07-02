@@ -13,7 +13,9 @@ import com.omise.tamboon.presentation.BaseActivity
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
 import io.reactivex.subjects.PublishSubject
-import kotlinx.android.synthetic.main.activity_create_donation.*
+import kotlinx.android.synthetic.main.view_amount.*
+import kotlinx.android.synthetic.main.view_credit_card.*
+import kotlinx.android.synthetic.main.view_pay_button.*
 import java.util.regex.Pattern
 
 class CreateDonationAcitivity : BaseActivity(), CreateDonationViewAction {
@@ -39,8 +41,8 @@ class CreateDonationAcitivity : BaseActivity(), CreateDonationViewAction {
     override fun setUp() {
         super.setUp()
         viewModel.viewAction = this
-        etNumber.requestFocus()
-        etNumber.filters = arrayOf(DecimalDigitsInputFilter(limitOfDigits = 8, limitOfDecimal = 2))
+        etAmount.requestFocus()
+        etAmount.filters = arrayOf(DecimalDigitsInputFilter(limitOfDigits = 8, limitOfDecimal = 2))
 
         viewModel.getUserInfo().observe(this, Observer {
             tvName.text = it?.card?.name
@@ -59,7 +61,7 @@ class CreateDonationAcitivity : BaseActivity(), CreateDonationViewAction {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
-        etNumber.addTextChangedListener(object : TextWatcher {
+        etAmount.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 etAmountObservable.onNext(s.toString())
             }
@@ -70,22 +72,23 @@ class CreateDonationAcitivity : BaseActivity(), CreateDonationViewAction {
 
         Observable.combineLatest(etAmountObservable, etCVCObservable, BiFunction<String, String, Boolean> { amount, cvc ->
             val isValidCVC = Pattern.compile("^[0-9]{3}").matcher(cvc).matches()
-            val isValidAmount = if (amount.isNotBlank()) amount.toDouble() in 20..1000000 else false// chack in range (min and max)
+            val isValidAmount = if (amount.isNotBlank()) amount.toDouble() in 20..1000000 else false // chack in range (min and max)
             isValidAmount && isValidCVC
         }).subscribe { btPay.isEnabled = it }.untilDestory()
 
 
         btPay.setOnClickListener {
-            viewModel.payAmount(charityId, etNumber.text.toString().toDouble())
+            viewModel.payAmount(charityId, etAmount.text.toString().toDouble())
         }
     }
 
     override fun alertDonateSucess(customerName: String, amount: String) {
-        val alert = AlertDialog.Builder(this)
-        alert.setTitle("Sucessfully donate to $customerName")
-        alert.setMessage("Donate by $customerName , $amount baht")
-        alert.setCancelable(true)
-        alert.setPositiveButton("OK") { dialog, id ->
+        val alert = AlertDialog.Builder(this).apply {
+            setTitle(getString(R.string.successful_donation, charityName))
+            setMessage(getString(R.string.donate_by, customerName, amount))
+            setCancelable(true)
+        }
+        alert.setPositiveButton(getString(R.string.ok)) { dialog, id ->
             dialog.dismiss()
             finish()
         }
