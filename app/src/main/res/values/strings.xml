@@ -10,4 +10,8 @@
     <string name="name">Name</string>
     <string name="card_number">Card number</string>
     <string name="cvc">CVC</string>
+
+    <string name="successful_donation">Successfully donate to %s</string>
+    <string name="donate_by">Donate by %1$s , %2$s</string>
+    <string name="ok">OK</string>
 </resources>
