@@ -2,4 +2,12 @@
     <string name="app_name">Tamboon</string>
     <string name="charities_title">Charities</string>
     <string name="charity_donation">Donate to %s</string>
+    <string name="pay">Pay</string>
+    <string name="cvc_warning">3 digits on the back of your card</string>
+    <string name="hint_amount">0.00</string>
+    <string name="expires">Expires</string>
+    <string name="min_max">min:20 THB , max: 1,000,000 THB</string>
+    <string name="name">Name</string>
+    <string name="card_number">Card number</string>
+    <string name="cvc">CVC</string>
 </resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="text_medium">24sp</dimen>
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_large">50sp</dimen>
+
+    <dimen name="dimen_super_mini">4dp</dimen>
+    <dimen name="dimen_mini">8dp</dimen>
+    <dimen name="dimen_small">12dp</dimen>
+    <dimen name="dimen_medium">12dp</dimen>
+    <dimen name="dimen_large">24dp</dimen>
+    <dimen name="dimen_16">16dp</dimen>
+
+    <dimen name="amount_height">128dp</dimen>
+    <dimen name="cvc_hint_width">90dp</dimen>
+    <dimen name="cvc_width">76dp</dimen>
+    <dimen name="expire_width">68dp</dimen>
+    <dimen name="expire_height">40dp</dimen>
+
+</resources>

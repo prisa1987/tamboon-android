@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dimen_16"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        android:textSize="@dimen/text_small"/>
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_mini"
+        android:background="@color/white"
+        android:padding="@dimen/dimen_small"
+        android:textAllCaps="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_large"
+        android:text="@string/card_number"/>
+
+    <TextView
+        android:id="@+id/tvCardNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_mini"
+        android:background="@color/white"
+        android:padding="@dimen/dimen_small"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvExpireLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_large"
+            android:text="@string/expires"/>
+
+        <TextView
+            android:id="@+id/tvExpire"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/expire_height"
+            android:layout_below="@id/tvExpireLabel"
+            android:layout_marginRight="@dimen/dimen_small"
+            android:layout_marginTop="@dimen/dimen_mini"
+            android:background="@color/white"
+            android:inputType="none"
+            android:minWidth="@dimen/expire_width"
+            android:padding="@dimen/dimen_mini"/>
+
+        <TextView
+            android:id="@+id/tvCvcLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_large"
+            android:layout_toRightOf="@id/tvExpire"
+            android:text="@string/cvc"/>
+
+        <EditText
+            android:id="@+id/etCVC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvCvcLabel"
+            android:layout_marginTop="@dimen/dimen_mini"
+            android:layout_toRightOf="@id/tvExpire"
+            android:background="@color/white"
+            android:inputType="numberPassword"
+            android:maxLength="3"
+            android:minWidth="@dimen/cvc_width"
+            android:padding="@dimen/dimen_mini"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvCvcLabel"
+            android:layout_marginLeft="@dimen/dimen_small"
+            android:layout_marginTop="@dimen/dimen_mini"
+            android:layout_toRightOf="@id/etCVC"
+            android:maxWidth="@dimen/cvc_hint_width"
+            android:text="@string/cvc_warning"
+            android:textSize="@dimen/text_small"/>
+
+    </RelativeLayout>
+</LinearLayout>
