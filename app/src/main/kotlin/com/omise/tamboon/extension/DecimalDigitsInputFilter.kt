@@ -1,4 +1,4 @@
-package com.omise.tamboon.data
+package com.omise.tamboon.extension
 
 import android.text.InputFilter
 import android.text.Spanned

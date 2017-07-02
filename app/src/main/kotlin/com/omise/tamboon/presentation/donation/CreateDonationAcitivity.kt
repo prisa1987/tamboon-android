@@ -7,8 +7,8 @@ import android.support.v7.app.AlertDialog
 import android.text.Editable
 import android.text.TextWatcher
 import com.omise.android.tamboon.R
-import com.omise.tamboon.data.DecimalDigitsInputFilter
-import com.omise.tamboon.data.extension.untilDestory
+import com.omise.tamboon.extension.DecimalDigitsInputFilter
+import com.omise.tamboon.extension.untilDestory
 import com.omise.tamboon.presentation.BaseActivity
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
