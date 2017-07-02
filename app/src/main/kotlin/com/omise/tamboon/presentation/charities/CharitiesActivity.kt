@@ -19,6 +19,7 @@ class CharitiesActivity : BaseActivity() {
 
     override fun setUp() {
         super.setUp()
+        viewModel.viewAction = this
         setupRecyclerView()
         viewModel.getCharities().observe(this, Observer {
             it?.let { adapter.charities = it }
@@ -32,12 +33,13 @@ class CharitiesActivity : BaseActivity() {
             addItemDecoration(DividerItemDecoration(context, linearLayoutManager.orientation))
             adapter = this@CharitiesActivity.adapter
         }
-        adapter.itemOnClickListener = { id -> navigateToCharityDonate(id) }
+        adapter.itemOnClickListener = { navigateToCharityDonate(it.first, it.second) }
     }
 
-    private fun navigateToCharityDonate(id: String) {
+    private fun navigateToCharityDonate(id: String, name: String) {
         val intent = Intent(this, CreateDonationAcitivity::class.java).apply {
             putExtra(CreateDonationAcitivity.ARG_CHARITY_ID, id)
+            putExtra(CreateDonationAcitivity.ARG_CHARITY_NAME, name)
         }
         startActivity(intent)
     }
