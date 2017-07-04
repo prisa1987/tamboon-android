@@ -28,6 +28,8 @@ class CreateDonationAcitivity : BaseActivity(), CreateDonationViewAction {
     private lateinit var charityId: String
     private lateinit var charityName: String
     private val viewModel: CreateDonationViewModel by lazy { ViewModelProviders.of(this).get(CreateDonationViewModel::class.java) }
+    private val etCVCObservable = PublishSubject.create<String>()
+    private val etAmountObservable = PublishSubject.create<String>()
 
     override val toolbarTitle: String by lazy { getString(R.string.charity_donation, charityName) }
     override val contentLayoutResourceId: Int = R.layout.activity_create_donation
@@ -43,16 +45,18 @@ class CreateDonationAcitivity : BaseActivity(), CreateDonationViewAction {
         viewModel.viewAction = this
         etAmount.requestFocus()
         etAmount.filters = arrayOf(DecimalDigitsInputFilter(limitOfDigits = 8, limitOfDecimal = 2))
-
         viewModel.getUserInfo().observe(this, Observer {
             tvName.text = it?.card?.name
             tvCardNumber.text = "XXXX - XXXX - XXXX - ${it?.card?.lastDigits}"
             tvExpire.setText("${it?.card?.expireMonth?.toString()}/${it?.card?.expireYear.toString()}")
         })
 
-        val etCVCObservable = PublishSubject.create<String>()
-        val etAmountObservable = PublishSubject.create<String>()
+        setUpCVCTextChanged()
+        setUpAmountTextChanged()
+        setUpPayButton()
+    }
 
+    fun setUpCVCTextChanged() {
         etCVC.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 etCVCObservable.onNext(s?.toString())
@@ -61,6 +65,9 @@ class CreateDonationAcitivity : BaseActivity(), CreateDonationViewAction {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
+    }
+
+    fun setUpAmountTextChanged() {
         etAmount.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
                 etAmountObservable.onNext(s.toString())
@@ -69,13 +76,14 @@ class CreateDonationAcitivity : BaseActivity(), CreateDonationViewAction {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
+    }
 
+    fun setUpPayButton() {
         Observable.combineLatest(etAmountObservable, etCVCObservable, BiFunction<String, String, Boolean> { amount, cvc ->
             val isValidCVC = Pattern.compile("^[0-9]{3}").matcher(cvc).matches()
             val isValidAmount = if (amount.isNotBlank()) amount.toDouble() in 20..1000000 else false // chack in range (min and max)
             isValidAmount && isValidCVC
         }).subscribe { btPay.isEnabled = it }.untilDestory()
-
 
         btPay.setOnClickListener {
             viewModel.payAmount(charityId, etAmount.text.toString().toDouble())

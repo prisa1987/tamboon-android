@@ -15,8 +15,8 @@ class CharitiesActivity : BaseActivity() {
 
     override val contentLayoutResourceId = R.layout.activity_charities
     override val toolbarTitle: String by lazy { getString(R.string.charities_title) }
-    val viewModel by lazy { ViewModelProviders.of(this).get(CharitiesViewModel::class.java) }
-    val adapter: CharitiesAdapter by lazy { CharitiesAdapter() }
+    private val viewModel by lazy { ViewModelProviders.of(this).get(CharitiesViewModel::class.java) }
+    private val adapter: CharitiesAdapter by lazy { CharitiesAdapter() }
 
     override fun setUp() {
         super.setUp()
@@ -29,7 +29,6 @@ class CharitiesActivity : BaseActivity() {
 
     private fun setupRecyclerView() {
         rvCharities.apply {
-            val linearLayoutManager = LinearLayoutManager(this@CharitiesActivity)
             val gridLayoutManager = GridLayoutManager(this@CharitiesActivity, 2)
             layoutManager = gridLayoutManager
             adapter = this@CharitiesActivity.adapter
