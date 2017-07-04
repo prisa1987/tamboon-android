@@ -14,4 +14,5 @@
     <string name="successful_donation">Successfully donate to %s</string>
     <string name="donate_by">Donate by %1$s , %2$s</string>
     <string name="ok">OK</string>
+    <string name="R.string.ok">OK</string>
 </resources>

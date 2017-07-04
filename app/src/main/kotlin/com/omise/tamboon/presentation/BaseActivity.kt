@@ -6,14 +6,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import com.omise.android.tamboon.R
+import com.omise.tamboon.extension.compositeDisposable
 import kotlinx.android.synthetic.main.view_toolbar.*
-import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner, BaseViewAction {
 
     protected abstract val contentLayoutResourceId: Int
     protected abstract val toolbarTitle: String
-    private val compositeDisposable = CompositeDisposable()
 
     lateinit var registry: LifecycleRegistry
 
@@ -51,17 +51,18 @@ abstract class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner, BaseV
     }
 
     override fun alertError(title: String, message: String) {
-        val alert = AlertDialog.Builder(this)
-        alert.setTitle(title)
-        alert.setMessage(message)
-        alert.setCancelable(true)
-        alert.setPositiveButton("OK") { dialog, id -> dialog.dismiss() }
+        val alert = AlertDialog.Builder(this).apply {
+            setTitle(title)
+            setMessage(message)
+            setCancelable(true)
+            setPositiveButton(getString(R.string.R_string_ok)) { dialog, _ -> dialog.dismiss() }
+        }
         alert.show()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        compositeDisposable.dispose()
+        compositeDisposable.clear()
     }
 
     override fun onBack() {
